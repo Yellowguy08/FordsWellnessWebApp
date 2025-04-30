@@ -1,3 +1,8 @@
+@keyframes loadIn {
+    from {margin-top: 200vh;}
+    to {margin-top: 0;}
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -8,7 +13,6 @@ body {
 
     background: radial-gradient(#5f9df8 33%, #488cf7 33%, #488cf7 66%, #3478f6 66%);
     background-repeat: no-repeat;
-    background-size: cover;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -22,6 +26,9 @@ body {
     border-radius: 2rem;
     background-color: whitesmoke;
     padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 0 15px;
+    animation: loadIn 500ms 1;
+    animation-timing-function: ease-out;
 }
 
 div span {
@@ -29,20 +36,31 @@ div span {
     text-align: center;
     display: block;
     margin: 2rem 7rem;
+    font-weight: bold;
 }
 
-input {
+#username {
     border-radius: 0.5rem;
     background-color: #dfdfdf;
     display: block;
-    margin: 1rem;
-    padding: 0.75rem;
+    margin: 0.25rem;
+    padding: 1rem;
+    border: 0;
+    width: 90%;
+}
+
+#password {
+    border-radius: 0.5rem;
+    background-color: #dfdfdf;
+    display: block;
+    margin: 0.25rem;
+    padding: 1rem;
     border: 0;
     width: 90%;
 }
 
 div a {
-    color: blue;
+    color: #3478f6;
     font-size: 1rem;
     text-decoration: none;
     text-align: center;
@@ -51,12 +69,12 @@ div a {
 
 }
 
-button {
+#login {
     font-size: 1rem;
     border-radius: 1rem;
-    background-color: blue;
+    background-color: #3478f6;
     color: whitesmoke;
-    padding: 1rem;
+    padding: 1rem 2rem;
     border: 0;
     display: block;
 }
