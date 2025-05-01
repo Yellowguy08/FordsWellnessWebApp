@@ -39,54 +39,10 @@ function attemptLogin() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
   
-  if (username == '' || password == '') {
+  if (username == "test1@email.com" && password == "123456") {
+    return true;
+  } else {
     return false;
   }
-
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user.username);
-    alert(user.username);
-    return true;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("error");
-    alert(errorMessage);
-    return false;
-  });
-
-}
-
-function testAuth() {
-
-  console.log("testing Auth");
-
-  var username = "test1@email.com";
-  var password = "123456";
-
-  console.log(username);
-  console.log(password);
-
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user.username);
-    alert(user.username);
-    return true;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("error");
-    alert(errorMessage);
-    return false;
-  });
 
 }

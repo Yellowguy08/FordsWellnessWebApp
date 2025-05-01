@@ -16,13 +16,12 @@
 
         <span>Login</span>
         
-        <form>
+        <form method="get" onsubmit="return attemptLogin()" action="actvities.html">
             <div class="center"><input id="username" name="username" type="text" placeholder="Username"></div>
             <div class="center"><input id="password" name="password" type="password" placeholder="Password"></div>
         
             <a href="sign-up.html">Sign Up</a>
             <div class="center"><input type="submit" name="login" id="login" value="Login"></div>
-            <button onclick="testAuth()">Test Auth</button>
         </form>
 
     </div>
