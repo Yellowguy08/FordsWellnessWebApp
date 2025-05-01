@@ -66,8 +66,8 @@ function testAuth() {
 
   console.log("testing Auth");
 
-  var username = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+  var username = "test1@email.com";
+  var password = "123456";
 
   console.log(username);
   console.log(password);
