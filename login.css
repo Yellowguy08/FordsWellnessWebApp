@@ -1,6 +1,6 @@
 @keyframes loadIn {
-    from {margin-top: 200vh;}
-    to {margin-top: 0;}
+    from {transform: translateY(500vh)}
+    to {transform: translateY(0);}
 }
 
 * {
