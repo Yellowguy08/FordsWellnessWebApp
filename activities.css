@@ -1,0 +1,98 @@
+* {
+
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+
+    background-color: gray;
+
+}
+
+.activity-box {
+
+    width: 25vw;
+    aspect-ratio: 1;
+    background-color: orange;
+    background-image: url("comp.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 2rem;
+    position: relative;
+
+}
+
+.activity-info {
+    width: 100%;
+}
+
+.activity-name {
+
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+    height: fit-content;
+    margin-top: 2rem;
+    display: block;
+    font-weight: bolder;
+    color: whitesmoke;
+    text-shadow: black 0 0 5px;
+
+}
+
+.activity-room {
+
+    width: 100%;
+    height: fit-content;
+    text-align: center;
+    display: block;
+    color: whitesmoke;
+    text-shadow: black 0 0 5px;
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
+
+}
+
+.teacher-box {
+
+    width: 100%;
+    height: 50%;
+    background-color: white;
+    opacity: 0.7;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 2rem 2rem;
+
+}
+
+.activity-teacher {
+
+    font-size: 1.5rem;
+    margin-left: 2rem;
+
+}
+
+.capacity-bar {
+
+    border-radius: 5rem;
+    height: 90%;
+    width: 10px;
+    position: absolute;
+    right: 3%;
+    align-self: center;
+
+}
+
+.max-capacity {
+    background-color: #404040;
+}
+
+.curr-capacity {
+    background-color: green;
+}

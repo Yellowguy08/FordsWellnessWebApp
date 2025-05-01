@@ -46,3 +46,9 @@ function attemptLogin() {
   }
 
 }
+
+function createActivities() {
+
+    
+
+}
