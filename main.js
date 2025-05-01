@@ -47,13 +47,17 @@ function attemptLogin() {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    console.log(user.username);
+    alert(user.username);
     return true;
     // ...
   })
   .catch((error) => {
-    return false;
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log("error");
+    alert(errorMessage);
+    return false;
   });
 
 }
