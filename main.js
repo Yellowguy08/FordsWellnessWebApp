@@ -61,3 +61,32 @@ function attemptLogin() {
   });
 
 }
+
+function testAuth() {
+
+  console.log("testing Auth");
+
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+
+  console.log(username);
+  console.log(password);
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user.username);
+    alert(user.username);
+    return true;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("error");
+    alert(errorMessage);
+    return false;
+  });
+
+}
