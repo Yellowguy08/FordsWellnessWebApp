@@ -47,9 +47,11 @@ function attemptLogin() {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    return true;
     // ...
   })
   .catch((error) => {
+    return false;
     const errorCode = error.code;
     const errorMessage = error.message;
   });
