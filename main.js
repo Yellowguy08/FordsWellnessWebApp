@@ -49,6 +49,41 @@ function attemptLogin() {
 
 function createActivities() {
 
-    
+    let activity_box = document.createElement("div");
+    activity_box.classList.add("activity-box");
 
+    let activity_info = document.createElement("div");
+    activity_info.classList.add("activity-info");
+
+    let activity_name = document.createElement("span");
+    activity_name.appendChild(document.createTextNode("Nap Time"))
+    
+    let activity_room = document.createElement("span");
+    activity_room.appendChild(document.createTextNode("128"))
+
+    activity_info.appendChild(activity_name);
+    activity_info.appendChild(activity_room);
+
+    let teacher_box = document.createElement("div");
+    
+    let activity_teacher = document.createElement("span");
+    activity_teacher.classList.add("activity-teacher");
+    activity_teacher.appendChild(document.createTextNode("Mr."));
+
+    teacher_box.appendChild(activity_teacher);
+
+    let max_capacity = document.createElement("div");
+    max_capacity.classList.add("capacity-bar");
+    max_capacity.classList.add("max-capacity");
+
+    let curr_capacity = document.createElement("div");
+    curr_capacity.classList.add("capacity-bar");
+    curr_capacity.classList.add("curr-capacity");
+
+    activity_box.appendChild(activity_info);
+    activity_box.appendChild(teacher_box);
+    activity_box.appendChild(max_capacity);
+    activity_box.appendChild(curr_capacity);
+
+    document.getElementById("body").appendChild(activity_box);
 }
