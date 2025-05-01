@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 // import { getFireStore} from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -34,13 +34,24 @@ onAuthStateChanged(auth, user => {
 
 });
 
-// function attemptLogin() {
+function attemptLogin() {
   
-//   var username = document.getElementById("username").value;
-//   var password = document.getElementById("password").value;
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
   
-//   if (username == '' || password == '') {
-//     return false;
-//   }
+  if (username == '' || password == '') {
+    return false;
+  }
 
-// }
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+}
