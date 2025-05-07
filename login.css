@@ -39,17 +39,7 @@ div span {
     font-weight: bold;
 }
 
-#email {
-    border-radius: 0.5rem;
-    background-color: #dfdfdf;
-    display: block;
-    margin: 0.25rem;
-    padding: 1rem;
-    border: 0;
-    width: 90%;
-}
-
-#password {
+input {
     border-radius: 0.5rem;
     background-color: #dfdfdf;
     display: block;
