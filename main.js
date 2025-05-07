@@ -39,6 +39,13 @@ function attemptLogin() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
   
+  const submit = document.getElementById("login");
+
+  submit.addEventListener("click", function (event) {
+    event.preventDefault();
+    alert(5);
+  })
+
   if (username == "test1@email.com" && password == "123456") {
     return true;
   } else {
