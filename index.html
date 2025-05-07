@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="login.css">
     <link rel="shortcut icon" href="https://www.haverford.k12.pa.us/uploaded/haverford_favicon.ico" type="image/x-icon">
-    <script type="module" src="main.js"></script>
+    <script type="module" src="main.js" defer></script>
 </head>
 
 <body>
@@ -17,11 +17,12 @@
         <span>Login</span>
         
         <form>
-            <div class="center"><input id="username" name="username" type="text" placeholder="Username" required></div>
+
+            <div class="center"><input id="email" name="username" type="email" placeholder="Username" required></div>
             <div class="center"><input id="password" name="password" type="password" placeholder="Password" required></div>
         
             <a href="sign-up.html">Sign Up</a>
-            <div class="center"><input type="submit" name="login" id="login" value="Login"></div>
+            <div class="center"><button type="submit" name="login" id="login" value="Login"></div>
         </form>
 
     </div>
