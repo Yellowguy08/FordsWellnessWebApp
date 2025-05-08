@@ -1,7 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
-// import { getFireStore} from "firebase/firestore";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -24,26 +25,102 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app);
 
-const button = document.getElementById("login");
-button.addEventListener("click", function (event) {
-  event.preventDefault()
+const db = getFirestore(app);
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+// Login Handler
+// ------------------------------------------------------------------------
 
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    window.location.href = "activities.html";
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage)
+function sendUserData(email, id) {
+  const name = document.getElementById("name");
+  const homeroom = document.getElementById("homeroom");
+
+  await setDoc(doc(db, "UserInfo", /* id */), {
+    name: name.value,
+    id: id,
+    role: "student",
+    year: "2025",
+    homeroom: homeroom.value,
+    created: /* Curr Date */,
+    email: email
   });
-})
+}
+
+// Login Handler
+// ------------------------------------------------------------------------
+
+const loginButton = document.getElementById("login");
+
+if (loginButton) {
+  loginButton.addEventListener("click", function (event) {
+    event.preventDefault()
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      window.location.href = "activities.html";
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage)
+    });
+  })
+}
+
+// Sign-up Handler
+// ------------------------------------------------------------------------
+
+const signUpButton = document.getElementById("sign-up");
+
+if (signUpButton) {
+  signUpButton.addEventListener("click", function (levent) {
+    levent.preventDefault()
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      window.location.href = "activities.html";
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage)
+      // ..
+    });
+  })
+}
+
+// Placeholder Password Generator
+// ------------------------------------------------------------------------
+
+function generateRPassword() {
+
+  let passwordPlaceholder = document.getElementById("password");
+  
+  var result = '';
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < 20; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+
+  console.log("rPassword: " + result);
+
+  passwordPlaceholder.setAttribute("placeholder", result);
+
+}
+
+generateRPassword();
 
 // function createActivities() {
 
