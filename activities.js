@@ -16,21 +16,12 @@ const firebaseConfig = {
 
 }
 
-function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
-    .replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0, 
-            v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
 const app = initializeApp(firebaseConfig)
 // const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-const docRef = doc(db, "Activity", uuidv4());
+const docRef = doc(db, "Activity", /*find way to remove parameter*/);
 const docSnap = await getDoc(docRef);
 
 if (docSnap.exists()) {
