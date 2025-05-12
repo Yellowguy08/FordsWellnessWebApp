@@ -4,12 +4,6 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWith
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
 const firebaseConfig = {
 
   apiKey: "AIzaSyAsZMvBjivVPnEff1-hvkpgv6ubIVOErGk",
