@@ -71,6 +71,8 @@ async function sendUserData(email, id) {
     email: email
   });
 
+  window.location.href = "activities.html";
+
 }
 
 const signUpButton = document.getElementById("sign-up");
@@ -87,7 +89,6 @@ if (signUpButton) {
       // Signed up 
       const user = userCredential.user;
       sendUserData(email, user.uid);
-      window.location.href = "activities.html";
       // ...
     })
     .catch((error) => {
