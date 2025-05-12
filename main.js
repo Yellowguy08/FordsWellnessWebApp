@@ -30,24 +30,6 @@ const db = getFirestore(app);
 // Login Handler
 // ------------------------------------------------------------------------
 
-function sendUserData(email, id) {
-  const name = document.getElementById("name");
-  const homeroom = document.getElementById("homeroom");
-
-  await setDoc(doc(db, "UserInfo", /* id */), {
-    name: name.value,
-    id: id,
-    role: "student",
-    year: "2025",
-    homeroom: homeroom.value,
-    created: /* Curr Date */,
-    email: email
-  });
-}
-
-// Login Handler
-// ------------------------------------------------------------------------
-
 const loginButton = document.getElementById("login");
 
 if (loginButton) {
@@ -75,6 +57,22 @@ if (loginButton) {
 // Sign-up Handler
 // ------------------------------------------------------------------------
 
+async function sendUserData(email, id) {
+  const name = document.getElementById("name");
+  const homeroom = document.getElementById("homeroom");
+
+  await setDoc(doc(db, "UserInfo", id), {
+    name: name.value,
+    id: id,
+    role: "student",
+    year: getYear(homeroom.value),
+    homeroom: homeroom.value,
+    created: new Date(),
+    email: email
+  });
+
+}
+
 const signUpButton = document.getElementById("sign-up");
 
 if (signUpButton) {
@@ -88,6 +86,7 @@ if (signUpButton) {
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
+      sendUserData(email, user.uid);
       window.location.href = "activities.html";
       // ...
     })
@@ -100,8 +99,38 @@ if (signUpButton) {
   })
 }
 
-// Placeholder Password Generator
+// Other Helper Functions
 // ------------------------------------------------------------------------
+
+function getYear(homeroom) {
+
+  let yearDiff = new Date().getFullYear() - parseInt(homeroom.substring(0, homeroom.length));
+
+
+  switch(yearDiff) {
+
+    case 0:
+      console.log("Senior");
+      return "12";
+
+    case -1:
+      console.log("Junoir");
+      return "11";
+
+    case -2:
+      console.log("Softmore");
+      return "10";
+      
+    case -3:
+      console.log("Freshman");
+      return "9";
+    default:
+      console.log("Freshman - Default");
+      return "9";
+
+  }
+
+}
 
 function generateRPassword() {
 
