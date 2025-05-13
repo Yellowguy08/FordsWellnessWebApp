@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
 // import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword  } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
-import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
+import { collection, getDocs } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"; 
 
 const firebaseConfig = {
 
@@ -21,17 +21,25 @@ const app = initializeApp(firebaseConfig)
 
 const db = getFirestore(app);
 
-const docRef = doc(db, "Activity", /*find way to remove parameter*/);
-const docSnap = await getDoc(docRef);
 
-if (docSnap.exists()) {
-  console.log("Document data:", docSnap.data());
-} else {
-  // docSnap.data() will be undefined in this case
-  console.log("No such document!");
-}
 
-function createActivities(name, room, teacher) {
+const querySnapshot = await getDocs(collection(db, "Activity"));
+
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+
+  let data = doc.data();
+
+  createActivities(data.activityName, data.roomNumber, data.teachers)
+
+  // console.log(data.activityName)
+
+  // console.log(doc.id, " => ", doc.data());
+});
+
+
+
+function createActivities(name, room, teachers) {
 
     let activity_box = document.createElement("div");
     activity_box.classList.add("activity-box");
@@ -40,19 +48,32 @@ function createActivities(name, room, teacher) {
     activity_info.classList.add("activity-info");
 
     let activity_name = document.createElement("span");
-    activity_name.appendChild(document.createTextNode(name))
+    activity_name.classList.add("activity-name");
+    activity_name.appendChild(document.createTextNode(name));
     
     let activity_room = document.createElement("span");
-    activity_room.appendChild(document.createTextNode(room))
+    activity_room.classList.add("activity-room");
+    activity_room.appendChild(document.createTextNode(room));
 
     activity_info.appendChild(activity_name);
     activity_info.appendChild(activity_room);
 
     let teacher_box = document.createElement("div");
+    teacher_box.classList.add("teacher-box");
     
     let activity_teacher = document.createElement("span");
     activity_teacher.classList.add("activity-teacher");
-    activity_teacher.appendChild(document.createTextNode(teacher));
+
+    let teacherStr = "";
+
+    for (let i = 0; i < teachers.length; i++) {
+      console.log(teachers[i]);
+      teacherStr += teachers[i] += ", ";
+    }
+
+    teacherStr = teacherStr.substring(0, teacherStr.length-2);
+
+    activity_teacher.appendChild(document.createTextNode(teacherStr));
 
     teacher_box.appendChild(activity_teacher);
 
