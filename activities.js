@@ -30,7 +30,9 @@ querySnapshot.forEach((doc) => {
 
   let data = doc.data();
 
-  createActivities(data.activityName, data.roomNumber, data.teachers)
+  if (data.activityName && data.roomNumber && data.teachers && data.capacity && data.students) {
+    createActivities(data.activityName, data.roomNumber, data.teachers, data.capacity, data.students)
+  }
 
   // console.log(data.activityName)
 
@@ -39,7 +41,19 @@ querySnapshot.forEach((doc) => {
 
 
 
-function createActivities(name, room, teachers) {
+function createActivities(name, room, teachers, capacity, students) {
+
+  // <div class="activity-box">
+  //   <div class="activity-info">
+  //     <span class="activity-name">Fortnite tournament</span>
+  //     <span class="activity-room">9</span>
+  //   </div>
+  //   <div class="teacher-box">
+  //     <span class="activity-teacher">Temari Sims</span>
+  //   </div>
+  //   <div class="capacity-bar max-capacity"></div>
+  //   <div class="capacity-bar curr-capacity"></div>
+  // </div>
 
     let activity_box = document.createElement("div");
     activity_box.classList.add("activity-box");
@@ -49,7 +63,14 @@ function createActivities(name, room, teachers) {
 
     let activity_name = document.createElement("span");
     activity_name.classList.add("activity-name");
-    activity_name.appendChild(document.createTextNode(name));
+
+    let nameZIP = name;
+
+    if (nameZIP.length > 24) {
+      nameZIP = nameZIP.substring(0,24) + "...";
+    }
+
+    activity_name.appendChild(document.createTextNode(nameZIP));
     
     let activity_room = document.createElement("span");
     activity_room.classList.add("activity-room");
@@ -82,6 +103,11 @@ function createActivities(name, room, teachers) {
     max_capacity.classList.add("max-capacity");
 
     let curr_capacity = document.createElement("div");
+
+    curr_capacity.setAttribute("style", `--capacity: ${90*students.length / capacity}%;`);
+    if (students.length == capacity) {
+      curr_capacity.style.backgroundColor = "#cc0000";
+    }
     curr_capacity.classList.add("capacity-bar");
     curr_capacity.classList.add("curr-capacity");
 

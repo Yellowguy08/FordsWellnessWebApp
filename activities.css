@@ -1,5 +1,8 @@
+
+
 * {
 
+    --capacity: 50%;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
@@ -11,16 +14,19 @@ body {
     background-color: gray;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
+    row-gap: 5rem;
+    padding: 5rem 0;
 
 }
 
 .activity-box {
 
     width: 25vw;
-    aspect-ratio: 1;
+    height: 25vw;
     background-color: orange;
     background-image: url("comp.png");
     background-repeat: no-repeat;
@@ -39,7 +45,7 @@ body {
 .activity-name {
 
     font-size: 3rem;
-    width: 100%;
+    width: 90%;
     text-align: center;
     height: fit-content;
     margin-top: 2rem;
@@ -90,6 +96,7 @@ body {
     width: 10px;
     position: absolute;
     right: 3%;
+    bottom: 5%;
     align-self: center;
 
 }
@@ -100,4 +107,5 @@ body {
 
 .curr-capacity {
     background-color: green;
+    height: var(--capacity);
 }
