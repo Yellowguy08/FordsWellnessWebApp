@@ -46,7 +46,7 @@ body {
     }
 }
 
-@media screen and (max-width: 1300) {
+@media screen and (max-width: 1300px) {
     .activity-box {
         width: 40vw;
         height: 40vw;
