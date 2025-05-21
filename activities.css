@@ -46,14 +46,14 @@ body {
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1300) {
     .activity-box {
         width: 40vw;
         height: 40vw;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 830px) {
     .activity-box {
         width: 75vw;
         height: 75vw;
